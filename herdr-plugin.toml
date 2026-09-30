@@ -1,0 +1,14 @@
+id = "herdr.mcp"
+name = "Herdr MCP"
+version = "0.3.0"
+min_herdr_version = "0.9.1"
+description = "Full remote control of Herdr workspaces, tabs, panes, agents and worktrees over the Model Context Protocol."
+platforms = ["linux", "macos"]
+
+# Read-only self-test: runs the server's own code against the live session.
+# The MCP server itself is started by your MCP client, not by Herdr.
+[[actions]]
+id = "check"
+title = "Check herdr-mcp"
+contexts = ["workspace"]
+command = ["python3", "bin/check.py"]

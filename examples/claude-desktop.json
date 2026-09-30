@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "herdr": {
+      "command": "/absolute/path/to/herdr-mcp/bin/herdr-mcp",
+      "args": ["--stdio"],
+      "env": {
+        "HERDR_MCP_HERDR": "/opt/homebrew/bin/herdr",
+        "HERDR_MCP_DEFAULT_KIND": "claude",
+        "HERDR_MCP_CWD_ALLOW": "/Users/you/src"
+      }
+    }
+  }
+}

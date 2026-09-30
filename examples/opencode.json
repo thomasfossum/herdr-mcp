@@ -1,0 +1,13 @@
+{
+  "mcp": {
+    "herdr": {
+      "type": "local",
+      "enabled": true,
+      "command": ["/absolute/path/to/herdr-mcp/bin/herdr-mcp", "--stdio"],
+      "environment": {
+        "HERDR_MCP_DEFAULT_KIND": "opencode",
+        "HERDR_MCP_CWD_ALLOW": "/home/you/src"
+      }
+    }
+  }
+}

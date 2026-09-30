@@ -1,0 +1,50 @@
+# herdr-mcp as a Streamable HTTP service. Linux hosts only (the herdr binary is
+# bind-mounted from the host, and Docker Desktop cannot share a host unix socket).
+#
+# 1. cp docker/.env.example docker/.env  and fill it in (see docs/SETUP.md)
+# 2. openssl rand -hex 32 > docker/herdr-mcp-token && chmod 600 docker/herdr-mcp-token
+# 3. docker compose -f docker/compose.yml up -d --build
+#
+# Clients on the same compose network reach  http://herdr-mcp:8000/mcp
+# The host reaches  http://127.0.0.1:${HERDR_MCP_HOST_PORT}/mcp  (loopback only).
+
+services:
+  herdr-mcp:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: herdr-mcp:local
+    # The Herdr socket is srw------- : the container must run as its owner.
+    user: "${HERDR_UID:?set HERDR_UID in docker/.env}:${HERDR_GID:?set HERDR_GID in docker/.env}"
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    tmpfs: [/tmp]
+    environment:
+      HERDR_MCP_TOKEN_FILE: /run/secrets/herdr_mcp_token
+      HERDR_MCP_DEFAULT_KIND: ${HERDR_MCP_DEFAULT_KIND:-}
+      HERDR_MCP_CWD_ALLOW: ${HERDR_MCP_CWD_ALLOW:-}
+      HERDR_MCP_ALLOW: ${HERDR_MCP_ALLOW:-}
+      HERDR_MCP_AGENT_KINDS: ${HERDR_MCP_AGENT_KINDS:-}
+      HERDR_MCP_READ_ONLY: ${HERDR_MCP_READ_ONLY:-}
+      HERDR_MCP_DISABLE_TOOLS: ${HERDR_MCP_DISABLE_TOOLS:-}
+    volumes:
+      # Directory holding herdr.sock (mount the directory: the socket inode is
+      # recreated when the Herdr server restarts).
+      # Read-only: connecting to a unix socket works on a read-only mount, and
+      # the container cannot rewrite config.toml (which can define commands).
+      - ${HERDR_SOCKET_DIR:?set HERDR_SOCKET_DIR in docker/.env}:/run/herdr:ro
+      - ${HERDR_BINARY:?set HERDR_BINARY in docker/.env}:/usr/local/bin/herdr:ro
+      - herdr-mcp-state:/state
+    secrets:
+      - herdr_mcp_token
+    ports:
+      - "127.0.0.1:${HERDR_MCP_HOST_PORT:-8765}:8000"
+
+secrets:
+  herdr_mcp_token:
+    file: ./herdr-mcp-token
+
+volumes:
+  herdr-mcp-state:

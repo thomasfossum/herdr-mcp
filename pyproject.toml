@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "herdr-mcp"
+version = "0.3.0"
+description = "Model Context Protocol server for Herdr: full remote control of workspaces, tabs, panes, agents and worktrees."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Thomas Fossum" }]
+keywords = ["herdr", "mcp", "model-context-protocol", "agents", "terminal"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Terminals",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/thomasfossum/herdr-mcp"
+Repository = "https://github.com/thomasfossum/herdr-mcp"
+Issues = "https://github.com/thomasfossum/herdr-mcp/issues"
+Changelog = "https://github.com/thomasfossum/herdr-mcp/blob/main/CHANGELOG.md"
+Security = "https://github.com/thomasfossum/herdr-mcp/security/advisories/new"
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+herdr-mcp = "herdr_mcp.server:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
