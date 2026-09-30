@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.1 - 2026-09-30
+
+### Fixed
+
+* Document `--yes` for non-interactive `herdr plugin install`, and that a
+  locally linked plugin with the same id blocks the install.
+
 ## 0.3.0 - 2026-09-30
 
 Protocol modernization, onboarding fixes from an agent adoption test, and

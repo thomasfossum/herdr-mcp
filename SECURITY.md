@@ -72,7 +72,7 @@ text.
 * **Audit hashes are unsalted and truncated.** They show that two calls carried
   the same text; they do not protect short, guessable prompts.
 * **Plugin installs run repository code.** Pin a tag or commit:
-  `herdr plugin install thomasfossum/herdr-mcp --ref v0.3.0`.
+  `herdr plugin install thomasfossum/herdr-mcp --ref v0.3.1`.
 * **Prompt serialisation is per target string.** Addressing one agent by name
   and by pane id at the same moment uses two locks.
 

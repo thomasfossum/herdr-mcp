@@ -39,13 +39,13 @@ python3 bin/check.py                                 # read-only self-test
 Or as a Herdr plugin (pin a release so you know what code you run):
 
 ```bash
-herdr plugin install thomasfossum/herdr-mcp --ref v0.3.0
+herdr plugin install thomasfossum/herdr-mcp --ref v0.3.1
 herdr plugin action invoke herdr.mcp.check          # read-only self-test
 ```
 
 Interactive terminals show a review prompt before installing; add `--yes` to
 skip it in scripts and agents:
-`herdr plugin install thomasfossum/herdr-mcp --ref v0.3.0 --yes`.
+`herdr plugin install thomasfossum/herdr-mcp --ref v0.3.1 --yes`.
 
 Then register it with your client (Claude Code shown; others below). Use the
 absolute path of the checkout or, for a plugin, `plugin_root` from
@@ -212,7 +212,7 @@ The repository carries a `herdr-plugin.toml`, so it installs like any plugin and
 appears in `herdr plugin list` and the marketplace:
 
 ```bash
-herdr plugin install thomasfossum/herdr-mcp --ref v0.3.0
+herdr plugin install thomasfossum/herdr-mcp --ref v0.3.1
 herdr plugin action invoke herdr.mcp.check
 herdr plugin log list --plugin herdr.mcp
 ```

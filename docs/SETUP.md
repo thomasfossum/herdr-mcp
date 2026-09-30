@@ -41,7 +41,7 @@ python3 --version               # 3.9 or newer; nothing else to install
 Either as a Herdr plugin (pin a release so you know what code you run):
 
 ```bash
-herdr plugin install thomasfossum/herdr-mcp --ref v0.3.0
+herdr plugin install thomasfossum/herdr-mcp --ref v0.3.1
 herdr plugin list --json        # note "plugin_root": that is the checkout
 ```
 
@@ -53,7 +53,7 @@ or as a plain checkout:
 
 ```bash
 git clone https://github.com/thomasfossum/herdr-mcp.git
-cd herdr-mcp && git checkout v0.3.0
+cd herdr-mcp && git checkout v0.3.1
 ```
 
 Below, `HERDR_MCP_DIR` is that directory (the plugin root or your clone):
