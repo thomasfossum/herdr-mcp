@@ -45,6 +45,10 @@ herdr plugin install thomasfossum/herdr-mcp --ref v0.3.0
 herdr plugin list --json        # note "plugin_root": that is the checkout
 ```
 
+Interactive terminals show a review prompt before installing; in scripts and
+agents pass `--yes` to skip it. The install is refused if a local plugin with
+the same id (`herdr.mcp`) is already linked — unlink that first.
+
 or as a plain checkout:
 
 ```bash

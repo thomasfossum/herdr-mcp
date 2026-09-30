@@ -43,6 +43,10 @@ herdr plugin install thomasfossum/herdr-mcp --ref v0.3.0
 herdr plugin action invoke herdr.mcp.check          # read-only self-test
 ```
 
+Interactive terminals show a review prompt before installing; add `--yes` to
+skip it in scripts and agents:
+`herdr plugin install thomasfossum/herdr-mcp --ref v0.3.0 --yes`.
+
 Then register it with your client (Claude Code shown; others below). Use the
 absolute path of the checkout or, for a plugin, `plugin_root` from
 `herdr plugin list --json`:
